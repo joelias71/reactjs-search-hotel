@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    height: 5rem;
+    background-color: #48C9B0;
+    color: #fff;
+    padding: 2rem;
+}
+
+header > * {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.filter {
+    display: block;
+    position: relative;
+    height: 3.5rem;
+    background-color: #3498DB;
+}
+
+.filter-container {
+    position: relative;
+    margin: 0 auto;
+    height: 2.5rem;
+    display: flex;
+}
+
+.filter-block {
+    position: relative;
+    margin: 0 auto;
+    border: 2px;
+    line-height: 3.5rem;
+    text-align: center;
+}
+
+.filter-block > i {
+    padding: 5px;
+    background: #fff;
+    color: #B8B8B8;
+    min-width: 50px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+i > * {
+    margin-left: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+i > *:focus {
+    outline: none;
+}
