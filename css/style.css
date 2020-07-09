@@ -1,7 +1,16 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+:root {
+    --color-blue: #3498DB;
+    --color-green: #48C9B0;
+    --color-white: #fff;
+    --color-gray: #e4e4e4;
+    --color-black: #333;
+  }
 
 h1, h2, h3, h4, h5 {
     margin: 0;
@@ -10,8 +19,8 @@ h1, h2, h3, h4, h5 {
 
 header {
     height: 5rem;
-    background-color: #48C9B0;
-    color: #fff;
+    background-color: var(--color-green);
+    color: var(--color-white);
     padding: 2rem;
 }
 
@@ -24,7 +33,7 @@ header > * {
     display: block;
     position: relative;
     height: 3.5rem;
-    background-color: #3498DB;
+    background-color: var(--color-blue);
 }
 
 .filter-container {
@@ -44,19 +53,134 @@ header > * {
 
 .filter-block > i {
     padding: 5px;
-    background: #fff;
-    color: #B8B8B8;
+    background: var(--color-white);
+    color: var(--color-gray);
     min-width: 50px;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
-i > * {
-    margin-left: 5px;
+
+.filter-block i > * {
+    margin-left: 10px;
     border: none;
+    font-size: 12px;
     cursor: pointer;
 }
 
 i > *:focus {
     outline: none;
+}
+
+.container {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.content {
+    position: relative;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    margin: 35px;
+    flex: 0 1 calc(30% - 35px);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray);
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card img {
+    width: 100%;
+}
+
+.card .card-content .title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-black);
+}
+
+.card .card-content .description {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: var(--color-black);
+}
+
+.data {
+    padding: 0;
+    margin-bottom: 0.5rem;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.data i {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    border-radius: 3px 0px 0px 3px;
+    padding: 6px;
+    margin-right: 0;
+    font-size: 14px;
+}
+
+.data label {
+    padding: 5.5px;
+    background-color: var(--color-gray);
+    margin-left: 0;
+    border-radius: 0px 3px 3px 0px;
+    font-size: 0.9rem;
+}
+
+.price {
+    background-color: var(--color-blue);
+    padding: 4px;
+    border-radius: 3px;
+    color: var(--color-white);
+    margin-left: 10px;
+    margin-bottom: 2em;
+}
+
+.price i {
+    border: none;
+    margin-left: 2px;
+    margin-right: 2px;
+    font-size: 14px;
+}
+
+.price i:first-child {
+    margin-left: 10px;
+}
+
+.price i:last-child {
+    margin-right: 10px;
+}
+
+.opacity {
+    opacity: 0.5;
+}
+
+.card-btn {
+    position: absolute;
+    color: var(--color-white);
+    background-color: var(--color-green);
+    height: 3rem;
+    text-align: center;
+    line-height: 3rem;
+    cursor: pointer;
+    width: 100%;
+    bottom: 0;
 }
