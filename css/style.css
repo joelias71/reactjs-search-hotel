@@ -31,9 +31,12 @@ header > * {
 
 .filter {
     display: block;
-    position: relative;
     height: 3.5rem;
     background-color: var(--color-blue);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 @media (max-width: 949px) {
