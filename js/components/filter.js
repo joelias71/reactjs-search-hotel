@@ -4,10 +4,16 @@ export default class Filter extends React.Component {
         super(props)
     }
 
+    handleClick() {
+        var element = document.getElementById("filter-container")
+        element.style.display = (element.style.display === "block")? "none" : "block"
+    }
+
     render() {
         return (
             <div className="filter">
-                <div className="filter-container">
+                <span className="box-shadow-menu" onClick={this.handleClick} />
+                <div className="filter-container" id="filter-container">
                     <div className="filter-block">
                         <i className="fas fa-sign-in-alt">
                             <input type="date" name="initDate" />
