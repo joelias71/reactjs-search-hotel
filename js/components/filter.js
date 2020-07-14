@@ -2,11 +2,21 @@ export default class Filter extends React.Component {
 
     constructor(props) {
         super(props)
+
+        this.state = {
+            country: 'default'
+        }
+
+        this.handleCountryChange = this.handleCountryChange.bind(this);
     }
 
     handleClick() {
         var element = document.getElementById("filter-container")
         element.style.display = (element.style.display === "block")? "none" : "block"
+    }
+
+    handleCountryChange(event) {
+        this.setState({ country: event.target.value })
     }
 
     render() {
@@ -26,8 +36,9 @@ export default class Filter extends React.Component {
                     </div>
                     <div className="filter-block">
                         <i className="fas fa-globe">
-                            <select name="countries" id="countries">
-                                <option>Todos los países</option>
+                            <select name="countries" id="countries" value={this.state.country} onChange={this.handleCountryChange}>
+                                <option key="default" value="default" disabled>Todos los países</option>
+                                {this.props.countries.map((country) => <option key={country} value={country}>{country}</option>)}
                             </select>
                         </i>
                     </div>

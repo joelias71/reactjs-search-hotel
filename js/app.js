@@ -4,11 +4,18 @@ import Container from './components/container'
 import { hotelsData } from './data/data'
 
 export default class App extends React.Component {
+
+    getCountries() {
+        return [...new Set(hotelsData.map(function(hotel) {
+            return hotel.country
+        }))]
+    }
+
     render() {
         return (
             <div>
                 <Header />
-                <Filter />
+                <Filter countries={this.getCountries()} />
                 <Container hotelsData={hotelsData} />
             </div>
         )
