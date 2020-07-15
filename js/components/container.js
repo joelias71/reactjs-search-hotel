@@ -4,15 +4,11 @@ export default class Container extends React.Component {
 
     constructor(props) {
         super(props)
-
-        this.state = {
-            hotelsData: this.props.hotelsData
-        }
     }
 
     render() {
 
-        const hotelList = this.state.hotelsData.map(hotel => (
+        const hotelList = this.props.hotelList.map(hotel => (
             <Card
                 key={hotel.id}
                 slug={hotel.slug}

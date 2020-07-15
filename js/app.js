@@ -1,9 +1,9 @@
 import Header from './components/header'
 import Filter from './components/filter'
 import Container from './components/container'
-import { hotelsData } from './data/data'
+import { hotelsData } from './data'
 import { getTextDate } from './util/date'
-import { getHotelSize, getPrices } from './data/filterData'
+import { getHotelSize, getPrices, getCountries, getFilteredHotels } from './data/filterData'
 
 export default class App extends React.Component {
 
@@ -11,19 +11,14 @@ export default class App extends React.Component {
         super(props)
 
         this.state = {
+            hotelList: hotelsData,
             initDate: null,
             endDate: null
         }
 
         this.getInitDateText = this.getInitDateText.bind(this)
         this.getEndDateText = this.getEndDateText.bind(this)
-    }
-
-    //Method that return unique countries from hotelsData
-    getCountries() {
-        return [...new Set(hotelsData.map(function(hotel) {
-            return hotel.country
-        }))]
+        this.getFilterHotelList = this.getFilterHotelList.bind(this)
     }
 
     getInitDateText(date) {
@@ -34,6 +29,12 @@ export default class App extends React.Component {
         this.setState({ endDate: getTextDate(date) })
     }
 
+    getFilterHotelList(country, price, size) {
+        let data = getFilteredHotels(country, price, size)
+        this.setState({ hotelList: data })
+        console.log(this.state.hotelList)
+    }
+
     render() {
         return (
             <div>
@@ -42,13 +43,14 @@ export default class App extends React.Component {
                     endDate={this.state.endDate}
                 />
                 <Filter 
-                    countries={this.getCountries()}
+                    countries={getCountries()}
                     prices={getPrices()}
                     sizes={getHotelSize()}
                     getInitDateText={this.getInitDateText}
                     getEndDateText={this.getEndDateText}
+                    getFilterHotelList={this.getFilterHotelList}
                 />
-                <Container hotelsData={hotelsData} />
+                <Container hotelList={this.state.hotelList} />
             </div>
         )
     }
@@ -59,4 +61,4 @@ ReactDOM.render(
         <App />
     </React.StrictMode>,
     document.getElementById('app')
-);
+)
