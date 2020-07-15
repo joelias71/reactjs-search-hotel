@@ -30,9 +30,7 @@ export default class App extends React.Component {
     }
 
     getFilterHotelList(country, price, size) {
-        let data = getFilteredHotels(country, price, size)
-        this.setState({ hotelList: data })
-        console.log(this.state.hotelList)
+        this.setState({ hotelList: getFilteredHotels(country, price, size) })
     }
 
     render() {
