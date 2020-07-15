@@ -1,4 +1,4 @@
-import { getTodayDate, getDefaultEndDate } from './../data'
+import { getTodayDate, getDefaultEndDate } from '../util/date'
 
 export default class Filter extends React.Component {
 
@@ -6,11 +6,11 @@ export default class Filter extends React.Component {
         super(props)
 
         this.state = {
-            country: 'default',
-            price: 'default',
-            size: 'default',
-            initDate: this.getTodayDate(),
-            endDate: this.getDefaultEndDate()
+            country: -1,
+            price: -1,
+            size: -1,
+            initDate: getTodayDate(),
+            endDate: getDefaultEndDate()
         }
 
         this.handleCountryChange = this.handleCountryChange.bind(this)
@@ -19,8 +19,8 @@ export default class Filter extends React.Component {
         this.handleInitDateChange = this.handleInitDateChange.bind(this)
         this.handleEndDateChange = this.handleEndDateChange.bind(this)
 
-        this.props.getInitDateText(this.getTodayDate())
-        this.props.getEndDateText(this.getDefaultEndDate())
+        this.props.getInitDateText(this.state.initDate)
+        this.props.getEndDateText(this.state.endDate)
 
     }
 
@@ -30,14 +30,17 @@ export default class Filter extends React.Component {
     }
 
     handleCountryChange(event) {
+        console.log(event.target.value)
         this.setState({ country: event.target.value })
     }
 
     handlePriceChange(event) {
+        console.log(event.target.value)
         this.setState({ price: event.target.value })
     }
 
     handleSizeChange(event) {
+        console.log(event.target.value)
         this.setState({ size: event.target.value })
     }
 
@@ -51,25 +54,6 @@ export default class Filter extends React.Component {
         this.props.getEndDateText(event.target.value)
     }
 
-    getTodayDate() {
-        let today = new Date()
-        let dd = String(today.getDate()).padStart(2, '0')
-        let mm = String(today.getMonth() + 1).padStart(2, '0')
-        let yyyy = today.getFullYear()
-
-        return `${yyyy}-${mm}-${dd}`
-    }
-
-    getDefaultEndDate() {
-        let newDate = new Date()
-        newDate.setDate(new Date().getDate() + 7)
-        let dd = String(newDate.getDate()).padStart(2, '0')
-        let mm = String(newDate.getMonth() + 1).padStart(2, '0')
-        let yyyy = newDate.getFullYear()
-
-        return `${yyyy}-${mm}-${dd}`
-    }
-
     render() {
         return (
             <div className="filter">
@@ -77,7 +61,7 @@ export default class Filter extends React.Component {
                 <div className="filter-container" id="filter-container">
                     <div className="filter-block">
                         <i className="fas fa-sign-in-alt">
-                            <input type="date" name="initDate" min={this.getTodayDate()} value={this.state.initDate} onChange={e => this.handleInitDateChange(e)}/>
+                            <input type="date" name="initDate" min={this.state.initDate} value={this.state.initDate} onChange={e => this.handleInitDateChange(e)}/>
                         </i>
                     </div>
                     <div className="filter-block">
@@ -88,7 +72,7 @@ export default class Filter extends React.Component {
                     <div className="filter-block">
                         <i className="fas fa-globe">
                             <select name="countries" id="countries" value={this.state.country} onChange={this.handleCountryChange}>
-                                <option key="default" value="default" disabled>Todos los países</option>
+                                <option key={-1} value={-1}>Todos los países</option>
                                 {this.props.countries.map(country => <option key={country} value={country}>{country}</option>)}
                             </select>
                         </i>
@@ -96,7 +80,7 @@ export default class Filter extends React.Component {
                     <div className="filter-block">
                         <i className="fas fa-dollar-sign">
                             <select name="prices" id="prices" value={this.state.price} onChange={this.handlePriceChange}>
-                                <option key="default" value="default" disabled>Cualquier precio</option>
+                                <option key={-1} value={-1}>Cualquier precio</option>
                                 {this.props.prices.map(price => <option key={price} value={price}>{'$'.repeat(price)}</option>)}
                             </select>
                         </i>
@@ -104,7 +88,7 @@ export default class Filter extends React.Component {
                     <div className="filter-block">
                         <i className="fas fa-bed">
                             <select name="sizes" id="sizes" value={this.state.size} onChange={this.handleSizeChange}>
-                                <option key="default" value="default" disabled>Cualquier tamaño</option>
+                                <option key={-1} value={-1}>Cualquier tamaño</option>
                                 {this.props.sizes.map(size => <option key={size.id} value={size.id}>{size.size}</option>)}
                             </select>
                         </i>
